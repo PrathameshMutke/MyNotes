@@ -58,6 +58,38 @@
                 android:layout_marginStart="20dp"/>
 
             <RelativeLayout
+                android:id="@+id/BottomSheetDialogAddNotesPink"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/pink"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogAddNotesPurple"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/purple"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogAddNotesOrange"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Orange"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogAddNotesTeal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
                 android:id="@+id/BottomSheetDialogAddNotesBlack"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

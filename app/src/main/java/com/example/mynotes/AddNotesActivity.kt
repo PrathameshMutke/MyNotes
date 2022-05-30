@@ -119,6 +119,58 @@ class AddNotesActivity : AppCompatActivity() {
                 AddNotesActivityBackgroungColorTxt.text = "Green"
             }
 
+            val BottomSheetDialogAddNotesPink: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogAddNotesPink)
+            BottomSheetDialogAddNotesPink.setOnClickListener {
+                AddNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.pink
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.pink)
+                AddNotesActivityBackgroungColorTxt.text = "Pink"
+            }
+
+            val BottomSheetDialogAddNotesPurple: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogAddNotesPurple)
+            BottomSheetDialogAddNotesPurple.setOnClickListener {
+                AddNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.purple)
+                AddNotesActivityBackgroungColorTxt.text = "Purple"
+            }
+
+            val BottomSheetDialogAddNotesOrange: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogAddNotesOrange)
+            BottomSheetDialogAddNotesOrange.setOnClickListener {
+                AddNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.Orange
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.Orange)
+                AddNotesActivityBackgroungColorTxt.text = "Orange"
+            }
+
+            val BottomSheetDialogAddNotesTeal: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogAddNotesTeal)
+            BottomSheetDialogAddNotesTeal.setOnClickListener {
+                AddNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.teal
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.teal)
+                AddNotesActivityBackgroungColorTxt.text = "Teal"
+            }
+
             val BottomSheetDialogAddNotesBlack: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesBlack)
             BottomSheetDialogAddNotesBlack.setOnClickListener {

@@ -63,6 +63,30 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
                     R.color.green
                 )
             )
+            "Pink" -> holder.layout_notes_backColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.pink
+                )
+            )
+            "Purple" -> holder.layout_notes_backColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.purple
+                )
+            )
+            "Orange" -> holder.layout_notes_backColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.Orange
+                )
+            )
+            "Teal" -> holder.layout_notes_backColor.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.teal
+                )
+            )
             "Black" -> holder.layout_notes_backColor.setBackgroundColor(
                 ContextCompat.getColor(
                     context,

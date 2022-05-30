@@ -67,6 +67,35 @@ class UpdateNotesActivity : AppCompatActivity() {
                     R.color.green
                 )
             )
+
+            "Pink" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.pink
+                )
+            )
+
+            "Purple" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.purple
+                )
+            )
+
+            "Orange" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.Orange
+                )
+            )
+
+            "Teal" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.teal
+                )
+            )
+
             "Black" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
@@ -80,6 +109,10 @@ class UpdateNotesActivity : AppCompatActivity() {
             "Blue" -> window.statusBarColor = ContextCompat.getColor(this, R.color.blue)
             "Yellow" -> window.statusBarColor = ContextCompat.getColor(this, R.color.yellow)
             "Green" -> window.statusBarColor = ContextCompat.getColor(this, R.color.green)
+            "Pink" -> window.statusBarColor = ContextCompat.getColor(this, R.color.pink)
+            "Purple" -> window.statusBarColor = ContextCompat.getColor(this, R.color.purple)
+            "Orange" -> window.statusBarColor = ContextCompat.getColor(this, R.color.Orange)
+            "Teal" -> window.statusBarColor = ContextCompat.getColor(this, R.color.teal)
             "Black" -> window.statusBarColor = ContextCompat.getColor(this, R.color.Black_Secondary2)
         }
 
@@ -184,6 +217,59 @@ class UpdateNotesActivity : AppCompatActivity() {
                 UpdatedNotesActivityBackgroungColorTxt.text = "Green"
             }
 
+            val BottomSheetDialogUpdateNotesPink: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateNotesPink)
+            BottomSheetDialogUpdateNotesPink.setOnClickListener {
+                UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.pink
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.pink)
+                UpdatedNotesActivityBackgroungColorTxt.text = "Pink"
+            }
+
+            val BottomSheetDialogUpdateNotesPurple: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateNotesPurple)
+            BottomSheetDialogUpdateNotesPurple.setOnClickListener {
+                UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.purple
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.purple)
+                UpdatedNotesActivityBackgroungColorTxt.text = "Purple"
+            }
+
+            val BottomSheetDialogUpdateNotesOrange: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateNotesOrange)
+            BottomSheetDialogUpdateNotesOrange.setOnClickListener {
+                UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.Orange
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.Orange)
+                UpdatedNotesActivityBackgroungColorTxt.text = "Orange"
+            }
+
+            val BottomSheetDialogUpdateNotesTeal: RelativeLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateNotesTeal)
+            BottomSheetDialogUpdateNotesTeal.setOnClickListener {
+                UpdatedNotesActivityBottomLayout.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.teal
+                    )
+                )
+                window.statusBarColor = ContextCompat.getColor(this, R.color.teal)
+                UpdatedNotesActivityBackgroungColorTxt.text = "Teal"
+            }
+
+
             val BottomSheetDialogUpdateNotesBlack: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogUpdateNotesBlack)
             BottomSheetDialogUpdateNotesBlack.setOnClickListener {
@@ -197,8 +283,9 @@ class UpdateNotesActivity : AppCompatActivity() {
                 UpdatedNotesActivityBackgroungColorTxt.text = "Black"
             }
 
-            val BottomSheetDialogUpdateMakeACopyBtn: LinearLayout = view.findViewById(R.id.BottomSheetDialogUpdateMakeACopyBtn)
-            BottomSheetDialogUpdateMakeACopyBtn.setOnClickListener{
+            val BottomSheetDialogUpdateMakeACopyBtn: LinearLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateMakeACopyBtn)
+            BottomSheetDialogUpdateMakeACopyBtn.setOnClickListener {
                 val title = UpdatedNotesActivityTitle.text.toString()
                 val notes = UpdatedNotesActivityNotes.text.toString()
                 val img = "blank"
@@ -225,7 +312,8 @@ class UpdateNotesActivity : AppCompatActivity() {
                 }
             }
 
-            val BottomSheetDialogUpdateDeleteBtn: LinearLayout = view.findViewById(R.id.BottomSheetDialogUpdateDeleteBtn)
+            val BottomSheetDialogUpdateDeleteBtn: LinearLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateDeleteBtn)
             BottomSheetDialogUpdateDeleteBtn.setOnClickListener {
                 val deleteNotes = Note("", "", "", "", "", "")
                 deleteNotes.SrNo = Integer.parseInt(SrNo)
@@ -269,8 +357,6 @@ class UpdateNotesActivity : AppCompatActivity() {
             }
 
         }
-
-
 
 
     }

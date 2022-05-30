@@ -62,6 +62,38 @@
                 android:background="@color/green" />
 
             <RelativeLayout
+                android:id="@+id/BottomSheetDialogUpdateNotesPink"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/pink"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogUpdateNotesPurple"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/purple"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogUpdateNotesOrange"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/Orange"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
+                android:id="@+id/BottomSheetDialogUpdateNotesTeal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/teal"
+                android:layout_marginStart="20dp"/>
+
+            <RelativeLayout
                 android:id="@+id/BottomSheetDialogUpdateNotesBlack"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

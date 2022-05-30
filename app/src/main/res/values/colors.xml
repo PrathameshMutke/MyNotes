@@ -10,10 +10,16 @@
 
     <color name="transparent">#00000000</color>
 
-    <color name="red">#FFB33F40</color>
-    <color name="blue">#FF3F83B3</color>
-    <color name="green">#FF7AB33F</color>
-    <color name="yellow">#FFEDD94C</color>
+    <color name="red">#FFf44336</color>
+    <color name="blue">#FF2196f3</color>
+    <color name="green">#FF4caf50</color>
+    <color name="yellow">#FFffc400</color>
+
+    <color name="pink">#FFf50057</color>
+    <color name="purple">#FF9c27b0</color>
+    <color name="teal">#FF009688</color>
+    <color name="Orange">#FFff9800</color>
+
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
