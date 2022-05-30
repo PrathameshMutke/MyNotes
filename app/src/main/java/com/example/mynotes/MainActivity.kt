@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        icons[0] = R.drawable.icon_grid1
-        icons[1] = R.drawable.icon_grid3
+        icons[0] = R.drawable.icon_grid3
+        icons[1] = R.drawable.icon_grid1
         icons[2] = R.drawable.icon_grid2
 
         MainActivitySearchBar = findViewById(R.id.MainActivitySearchBar)
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                 })
             } else if (i == 1) {
                 MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
-                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
+                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
                 val notesAdapter = NotesAdapter(this)
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                 })
             } else if (i == 2) {
                 MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
-                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
+                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
                 val notesAdapter = NotesAdapter(this)
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(

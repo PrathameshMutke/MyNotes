@@ -82,11 +82,11 @@
         android:id="@+id/MainActivityRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_below="@+id/MainActivitySearchBarLayout"
         android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@+id/MainActivitySearchBarLayout" />
+        android:layout_marginBottom="50dp" />
 
 
     <androidx.cardview.widget.CardView
