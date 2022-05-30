@@ -6,14 +6,14 @@
     <color name="Black_Secondary2">#FF333333</color>
     <color name="grey">#F5F5F5</color>
     <color name="grey1">#808080</color>
+    <color name="grey2">#10C5C5C5</color>
 
     <color name="transparent">#00000000</color>
 
-    <color name="red">#FFD50000</color>
-    <color name="blue">#FF2962FF</color>
-    <color name="green">#FF00C853</color>
-    <color name="yellow">#FFFFD600</color>
-
+    <color name="red">#FFB33F40</color>
+    <color name="blue">#FF3F83B3</color>
+    <color name="green">#FF7AB33F</color>
+    <color name="yellow">#FFEDD94C</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

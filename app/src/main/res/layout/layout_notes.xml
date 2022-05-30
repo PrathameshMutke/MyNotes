@@ -20,30 +20,39 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="7dp">
+                android:layout_height="match_parent"
+                android:background="@color/Black_Secondary"
+                android:layout_marginTop="5dp">
 
-                <TextView
-                    android:id="@+id/layout_notes_title"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:maxLines="2" />
+                    android:layout_margin="7dp">
 
-                <TextView
-                    android:id="@+id/layout_notes_notes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/layout_notes_title"
-                    android:text="Notes"
-                    android:textColor="@color/white"
-                    android:textSize="11sp"
-                    android:maxLines="3"/>
+                    <TextView
+                        android:id="@+id/layout_notes_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:maxLines="2" />
+
+                    <TextView
+                        android:id="@+id/layout_notes_notes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/layout_notes_title"
+                        android:text="Notes"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:maxLines="3"/>
+
+                </RelativeLayout>
 
             </RelativeLayout>
+
 
         </RelativeLayout>
 

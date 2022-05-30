@@ -74,9 +74,11 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
         holder.layout_notes_title.setText(Title)
         holder.layout_notes_notes.setText(NOtes)
 
+        val srNO = SrNo.toString()
+
         holder.layout_notes_MainLayout.setOnClickListener {
             val intent = Intent(context, UpdateNotesActivity::class.java)
-            intent.putExtra("SrNo", SrNo)
+            intent.putExtra("SrNo", srNO)
                 .putExtra("Title", Title)
                 .putExtra("Notes", NOtes)
                 .putExtra("Img", Img)

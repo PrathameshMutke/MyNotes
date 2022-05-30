@@ -11,7 +11,7 @@
         android:id="@+id/AddNotesActivityMainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/Black_Secondary">
+        android:background="@color/Black_Primary">
 
         <RelativeLayout
             android:id="@+id/AddNotesActivityHeadingLayout"
@@ -113,6 +113,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
+            android:id="@+id/AddNotesActivityBottomLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"

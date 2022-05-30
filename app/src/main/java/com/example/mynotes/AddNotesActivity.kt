@@ -35,6 +35,7 @@ class AddNotesActivity : AppCompatActivity() {
     lateinit var AddNotesActivityMainLayout: RelativeLayout
     lateinit var AddNotesActivityBackgroungColorTxt: TextView
     lateinit var AddNotesActivitySaveBtn: ImageView
+    lateinit var AddNotesActivityBottomLayout: LinearLayout
 
 
     private val pickImage = 100
@@ -50,12 +51,14 @@ class AddNotesActivity : AppCompatActivity() {
             finish()
         }
 
-        // on below line we are initialing our view modal.
         viewModal = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(NoteViewModal::class.java)
 
+        window.statusBarColor = ContextCompat.getColor(this, R.color.Black_Secondary2)
+
+        AddNotesActivityBottomLayout = findViewById(R.id.AddNotesActivityBottomLayout)
         AddNotesActivityBackgroungColorTxt = findViewById(R.id.AddNotesActivityBackgroungColorTxt)
         AddNotesActivityBackgroungColorTxt.text = "Black"
         AddNotesActivityMainLayout = findViewById(R.id.AddNotesActivityMainLayout)
@@ -67,7 +70,7 @@ class AddNotesActivity : AppCompatActivity() {
             val BottomSheetDialogAddNotesRed: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesRed)
             BottomSheetDialogAddNotesRed.setOnClickListener {
-                AddNotesActivityMainLayout.setBackgroundColor(
+                AddNotesActivityBottomLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
                         R.color.red
@@ -80,7 +83,7 @@ class AddNotesActivity : AppCompatActivity() {
             val BottomSheetDialogAddNotesBlue: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesBlue)
             BottomSheetDialogAddNotesBlue.setOnClickListener {
-                AddNotesActivityMainLayout.setBackgroundColor(
+                AddNotesActivityBottomLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
                         R.color.blue
@@ -93,7 +96,7 @@ class AddNotesActivity : AppCompatActivity() {
             val BottomSheetDialogAddNotesYellow: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesYellow)
             BottomSheetDialogAddNotesYellow.setOnClickListener {
-                AddNotesActivityMainLayout.setBackgroundColor(
+                AddNotesActivityBottomLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
                         R.color.yellow
@@ -106,7 +109,7 @@ class AddNotesActivity : AppCompatActivity() {
             val BottomSheetDialogAddNotesGreen: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesGreen)
             BottomSheetDialogAddNotesGreen.setOnClickListener {
-                AddNotesActivityMainLayout.setBackgroundColor(
+                AddNotesActivityBottomLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
                         R.color.green
@@ -119,13 +122,13 @@ class AddNotesActivity : AppCompatActivity() {
             val BottomSheetDialogAddNotesBlack: RelativeLayout =
                 view.findViewById(R.id.BottomSheetDialogAddNotesBlack)
             BottomSheetDialogAddNotesBlack.setOnClickListener {
-                AddNotesActivityMainLayout.setBackgroundColor(
+                AddNotesActivityBottomLayout.setBackgroundColor(
                     ContextCompat.getColor(
                         this,
-                        R.color.Black_Secondary
+                        R.color.Black_Secondary2
                     )
                 )
-                window.statusBarColor = ContextCompat.getColor(this, R.color.Black_Secondary)
+                window.statusBarColor = ContextCompat.getColor(this, R.color.Black_Secondary2)
                 AddNotesActivityBackgroungColorTxt.text = "Black"
             }
 

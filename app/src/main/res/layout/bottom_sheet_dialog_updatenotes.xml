@@ -8,12 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
             android:text="Background"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -22,9 +24,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/BottomSheetDialogUpdateNotesRed"
@@ -37,42 +41,48 @@
                 android:id="@+id/BottomSheetDialogUpdateNotesBlue"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:background="@color/blue"
-                android:layout_marginStart="20dp"/>
+                android:background="@color/blue" />
 
             <RelativeLayout
                 android:id="@+id/BottomSheetDialogUpdateNotesYellow"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:background="@color/yellow"
-                android:layout_marginStart="20dp"/>
+                android:background="@color/yellow" />
 
             <RelativeLayout
                 android:id="@+id/BottomSheetDialogUpdateNotesGreen"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:background="@color/green"
-                android:layout_marginStart="20dp"/>
+                android:background="@color/green" />
 
             <RelativeLayout
                 android:id="@+id/BottomSheetDialogUpdateNotesBlack"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                android:background="@color/Black_Primary"
-                android:layout_marginStart="20dp"/>
+                android:background="@color/Black_Primary" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/BottomSheetDialogUpdateMakeACopyBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ripple_effect"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:paddingStart="20dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:layout_width="25dp"
@@ -91,11 +101,18 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/BottomSheetDialogUpdateDeleteBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/ripple_effect"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp">
 
             <ImageView
                 android:layout_width="25dp"
