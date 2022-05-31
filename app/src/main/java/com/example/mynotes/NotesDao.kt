@@ -2,6 +2,7 @@ package com.example.mynotes
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotesDao {
@@ -17,6 +18,10 @@ interface NotesDao {
 
     @Update
     fun update(note: Note)
+
+
+    @Query("SELECT * FROM NotesTable WHERE Title LIKE :SearchQuery OR nNotes LIKE :SearchQuery")
+    fun searchData(SearchQuery: String): Flow<List<Note>>
 
     /*@Query("SELECT * FROM NotesTable WHERE Pin LIKE :minAge")
     fun getPin(pin: String): Array<Note>*/

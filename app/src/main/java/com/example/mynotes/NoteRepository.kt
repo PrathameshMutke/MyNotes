@@ -12,12 +12,16 @@ class NoteRepository(private val notesDao: NotesDao) {
         notesDao.insert(note)
     }
 
-    fun delete(note: Note){
+    fun delete(note: Note) {
         notesDao.delete(note)
     }
 
-    fun update(note: Note){
+    fun update(note: Note) {
         notesDao.update(note)
+    }
+
+    fun searchData(searchQuery: String): kotlinx.coroutines.flow.Flow<List<Note>> {
+        return notesDao.searchData(searchQuery)
     }
 
 }

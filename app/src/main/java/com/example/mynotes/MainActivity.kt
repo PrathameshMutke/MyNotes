@@ -1,18 +1,17 @@
 package com.example.mynotes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var MainActivityRecyclerView: RecyclerView
     lateinit var MainActivityNotesAlignment: ImageView
     lateinit var viewModal: NoteViewModal
+    lateinit var notesAdapter: NotesAdapter
     val icons = IntArray(3)
     var i = 0
 
@@ -52,6 +52,30 @@ class MainActivity : AppCompatActivity() {
         MainActivitySearchBarClearIcon.setOnClickListener {
             MainActivitySearchBar.setText("")
         }
+
+        MainActivitySearchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                val SS = s.toString()
+                filter(SS)
+                if (SS.isEmpty()) {
+                    MainActivitySearchBarClearIcon.setVisibility(View.GONE)
+                } else {
+                    filter(s.toString())
+                    MainActivitySearchBarClearIcon.setVisibility(View.VISIBLE)
+                }
+            }
+        })
+
+
+
 
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
@@ -110,7 +134,7 @@ class MainActivity : AppCompatActivity() {
 
         MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
         MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        val notesAdapter = NotesAdapter(this)
+        notesAdapter = NotesAdapter(this)
         MainActivityRecyclerView.adapter = notesAdapter
         viewModal = ViewModelProvider(
             this,
@@ -125,5 +149,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun filter(query: String) {
+        val searchQuery = "%$query%"
+        viewModal.searchData(searchQuery).observe(this, androidx.lifecycle.Observer { list ->
+            list?.let {
+                notesAdapter.updateList(it)
+            }
+        })
+    }
 
 }
