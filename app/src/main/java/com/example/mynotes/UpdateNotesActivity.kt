@@ -22,6 +22,8 @@ class UpdateNotesActivity : AppCompatActivity() {
     lateinit var UpdatedNotesActivityCreatedDate: TextView
     lateinit var UpdatedNotesActivityUpdatedDate: TextView
     lateinit var UpdatedNotesActivityBottomLayout: LinearLayout
+    lateinit var UpdatedNotesActivityPinBtn: ImageView
+    lateinit var UpdatedNotesActivityPinTxt: TextView
     lateinit var viewModal: NoteViewModal
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +37,41 @@ class UpdateNotesActivity : AppCompatActivity() {
         val BackColor = intent.getStringExtra("BackColor").toString()
         val CreatedDate = intent.getStringExtra("CreatedDate").toString()
         val UpdatedDate = intent.getStringExtra("UpdatedDate").toString()
+        val Pin = intent.getStringExtra("Pin").toString()
 
         viewModal = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(NoteViewModal::class.java)
+
         UpdatedNotesActivityBottomLayout = findViewById(R.id.UpdatedNotesActivityBottomLayout)
+
+
+        UpdatedNotesActivityPinTxt = findViewById(R.id.UpdatedNotesActivityPinTxt)
+        UpdatedNotesActivityPinTxt.text = Pin
+        UpdatedNotesActivityPinBtn = findViewById(R.id.UpdatedNotesActivityPinBtn)
+        if (Pin.equals("0")) {
+            UpdatedNotesActivityPinBtn.setBackgroundResource(R.drawable.icon_pin)
+        } else {
+            UpdatedNotesActivityPinBtn.setBackgroundResource(R.drawable.icon_unpin)
+        }
+        UpdatedNotesActivityPinBtn.setOnClickListener {
+            val PinTxt = UpdatedNotesActivityPinTxt.text.toString()
+
+            if (PinTxt.equals("0")) {
+                val updatedNotes = Note(Title, Notes, Img, BackColor, CreatedDate, UpdatedDate, "1")
+                updatedNotes.SrNo = Integer.parseInt(SrNo)
+                viewModal.updateNote(updatedNotes)
+                UpdatedNotesActivityPinBtn.setBackgroundResource(R.drawable.icon_unpin)
+                UpdatedNotesActivityPinTxt.text = "1"
+            } else {
+                val updatedNotes = Note(Title, Notes, Img, BackColor, CreatedDate, UpdatedDate, "0")
+                updatedNotes.SrNo = Integer.parseInt(SrNo)
+                viewModal.updateNote(updatedNotes)
+                UpdatedNotesActivityPinBtn.setBackgroundResource(R.drawable.icon_pin)
+                UpdatedNotesActivityPinTxt.text = "0"
+            }
+        }
 
         when (BackColor) {
             "Red" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
@@ -113,7 +144,8 @@ class UpdateNotesActivity : AppCompatActivity() {
             "Purple" -> window.statusBarColor = ContextCompat.getColor(this, R.color.purple)
             "Orange" -> window.statusBarColor = ContextCompat.getColor(this, R.color.Orange)
             "Teal" -> window.statusBarColor = ContextCompat.getColor(this, R.color.teal)
-            "Black" -> window.statusBarColor = ContextCompat.getColor(this, R.color.Black_Secondary2)
+            "Black" -> window.statusBarColor =
+                ContextCompat.getColor(this, R.color.Black_Secondary2)
         }
 
         UpdatedNotesActivityTitle = findViewById(R.id.UpdatedNotesActivityTitle)
@@ -306,7 +338,17 @@ class UpdateNotesActivity : AppCompatActivity() {
                 if (title.isEmpty() || notes.isEmpty()) {
                     Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG).show()
                 } else {
-                    viewModal.addNote(Note(title, notes, img, backColor, timeStamp, updatedDate))
+                    viewModal.addNote(
+                        Note(
+                            title,
+                            notes,
+                            img,
+                            backColor,
+                            timeStamp,
+                            updatedDate,
+                            "0"
+                        )
+                    )
                     Toast.makeText(this, "Notes Copy Created", Toast.LENGTH_LONG).show()
                     finish()
                 }
@@ -315,7 +357,7 @@ class UpdateNotesActivity : AppCompatActivity() {
             val BottomSheetDialogUpdateDeleteBtn: LinearLayout =
                 view.findViewById(R.id.BottomSheetDialogUpdateDeleteBtn)
             BottomSheetDialogUpdateDeleteBtn.setOnClickListener {
-                val deleteNotes = Note("", "", "", "", "", "")
+                val deleteNotes = Note("", "", "", "", "", "", "")
                 deleteNotes.SrNo = Integer.parseInt(SrNo)
                 viewModal.deleteNote(deleteNotes)
                 Toast.makeText(this, "Notes Deleted", Toast.LENGTH_LONG).show()
@@ -330,6 +372,7 @@ class UpdateNotesActivity : AppCompatActivity() {
 
         UpdatedNotesActivitySaveBtn = findViewById(R.id.UpdatedNotesActivitySaveBtn)
         UpdatedNotesActivitySaveBtn.setOnClickListener {
+            val PinTxt = UpdatedNotesActivityPinTxt.text.toString()
             val title = UpdatedNotesActivityTitle.text.toString()
             val notes = UpdatedNotesActivityNotes.text.toString()
             val img = "blank"
@@ -350,7 +393,8 @@ class UpdateNotesActivity : AppCompatActivity() {
             if (title.isEmpty() || notes.isEmpty()) {
                 Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG).show()
             } else {
-                val updatedNotes = Note(title, notes, img, backColor, createdDate, updatedDate)
+                val updatedNotes =
+                    Note(title, notes, img, backColor, createdDate, updatedDate, PinTxt)
                 updatedNotes.SrNo = Integer.parseInt(SrNo)
                 viewModal.updateNote(updatedNotes)
                 Toast.makeText(this, "Notes Updated", Toast.LENGTH_LONG).show()

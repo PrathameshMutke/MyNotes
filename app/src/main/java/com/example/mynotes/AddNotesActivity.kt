@@ -226,7 +226,7 @@ class AddNotesActivity : AppCompatActivity() {
             if (title.isEmpty() || notes.isEmpty()) {
                 Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG).show()
             } else {
-                viewModal.addNote(Note(title, notes, img, backColor, timeStamp, updatedDate))
+                viewModal.addNote(Note(title, notes, img, backColor, timeStamp, updatedDate, "0"))
                 Toast.makeText(this, "Notes Added", Toast.LENGTH_LONG).show()
                 finish()
             }

@@ -11,8 +11,9 @@ class Note(
     @ColumnInfo(name = "img") val img: String,
     @ColumnInfo(name = "BackColor") val backColor: String,
     @ColumnInfo(name = "CreatedDate") val createdDate: String,
-    @ColumnInfo(name = "UpdatedDate") val updatedDate: String)
-{
+    @ColumnInfo(name = "UpdatedDate") val updatedDate: String,
+    @ColumnInfo(name = "Pin") val pin: String
+) {
     @PrimaryKey(autoGenerate = true)
     var SrNo = 0
 }

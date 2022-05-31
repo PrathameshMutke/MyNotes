@@ -38,6 +38,15 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/UpdatedNotesActivityPinTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <ImageView
                 android:id="@+id/UpdatedNotesActivityMenuBtn"
                 android:layout_width="25dp"
@@ -54,6 +63,16 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@+id/UpdatedNotesActivityMenuBtn"
                 android:src="@drawable/icon_save" />
+
+            <ImageView
+                android:id="@+id/UpdatedNotesActivityPinBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/UpdatedNotesActivitySaveBtn"
+                android:rotation="30" />
+
 
         </RelativeLayout>
 

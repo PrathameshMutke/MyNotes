@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface NotesDao {
 
-    @Query("Select * from NotesTable order by SrNo ASC")
+    @Query("Select * from NotesTable order by Pin DESC")
     fun getAllNotes(): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,5 +17,8 @@ interface NotesDao {
 
     @Update
     fun update(note: Note)
+
+    /*@Query("SELECT * FROM NotesTable WHERE Pin LIKE :minAge")
+    fun getPin(pin: String): Array<Note>*/
 
 }
