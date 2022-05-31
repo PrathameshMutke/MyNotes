@@ -19,6 +19,27 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:id="@+id/layout_notes_PinLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_pin_background"
+                android:layout_alignParentEnd="true"
+                android:translationZ="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:rotation="40"
+                    android:layout_centerInParent="true"
+                    android:padding="2dp"
+                    android:src="@drawable/icon_pin"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/Black_Secondary"
