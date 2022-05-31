@@ -7,11 +7,15 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface NotesDao {
 
-    @Query("Select * from NotesTable order by Pin DESC")
+    //@Query("Select * from NotesTable order by Pin DESC")
+    @Query("Select * from NotesTable WHERE Pin LIKE 0 ORDER BY CreatedDate")
     fun getAllNotes(): LiveData<List<Note>>
 
+    @Query("Select * from NotesTable WHERE Pin LIKE 1 ORDER BY CreatedDate")
+    fun getAllPinNotes(): LiveData<List<Note>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(note :Note)
+    fun insert(note: Note)
 
     @Delete
     fun delete(note: Note)

@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var MainActivitySearchBar: EditText
     lateinit var MainActivityAddNotesBtn: CardView
     lateinit var MainActivityRecyclerView: RecyclerView
+    lateinit var MainActivityPinRecyclerView: RecyclerView
     lateinit var MainActivityNotesAlignment: ImageView
     lateinit var viewModal: NoteViewModal
     lateinit var notesAdapter: NotesAdapter
+    lateinit var notesAdapter2: NotesAdapter
     val icons = IntArray(3)
     var i = 0
 
@@ -75,8 +77,6 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-
-
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
         MainActivityNotesAlignment.setOnClickListener {
@@ -99,6 +99,23 @@ class MainActivity : AppCompatActivity() {
                         notesAdapter.updateList(it)
                     }
                 })
+
+                //Pin
+                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
+                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
+                notesAdapter2 = NotesAdapter(this)
+                MainActivityPinRecyclerView.adapter = notesAdapter2
+                viewModal = ViewModelProvider(
+                    this,
+                    ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+                ).get(NoteViewModal::class.java)
+                viewModal.allPinNotes.observe(this, androidx.lifecycle.Observer { list ->
+                    list?.let {
+                        notesAdapter2.updateList(it)
+                    }
+                })
+
+
             } else if (i == 1) {
                 MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
@@ -113,6 +130,23 @@ class MainActivity : AppCompatActivity() {
                         notesAdapter.updateList(it)
                     }
                 })
+
+
+                //Pin
+                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
+                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 3)
+                notesAdapter2 = NotesAdapter(this)
+                MainActivityPinRecyclerView.adapter = notesAdapter2
+                viewModal = ViewModelProvider(
+                    this,
+                    ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+                ).get(NoteViewModal::class.java)
+                viewModal.allPinNotes.observe(this, androidx.lifecycle.Observer { list ->
+                    list?.let {
+                        notesAdapter2.updateList(it)
+                    }
+                })
+
             } else if (i == 2) {
                 MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
@@ -127,6 +161,22 @@ class MainActivity : AppCompatActivity() {
                         notesAdapter.updateList(it)
                     }
                 })
+
+                //Pin
+                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
+                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 1)
+                notesAdapter2 = NotesAdapter(this)
+                MainActivityPinRecyclerView.adapter = notesAdapter2
+                viewModal = ViewModelProvider(
+                    this,
+                    ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+                ).get(NoteViewModal::class.java)
+                viewModal.allPinNotes.observe(this, androidx.lifecycle.Observer { list ->
+                    list?.let {
+                        notesAdapter2.updateList(it)
+                    }
+                })
+
             }
 
 
@@ -146,6 +196,19 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
+        MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        notesAdapter2 = NotesAdapter(this)
+        MainActivityPinRecyclerView.adapter = notesAdapter2
+        viewModal = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        ).get(NoteViewModal::class.java)
+        viewModal.allPinNotes.observe(this, androidx.lifecycle.Observer { list ->
+            list?.let {
+                notesAdapter2.updateList(it)
+            }
+        })
 
     }
 
