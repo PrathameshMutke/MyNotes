@@ -6,10 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +24,7 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
             itemView.findViewById<RelativeLayout>(R.id.layout_notes_backColor)
         val layout_notes_MainLayout = itemView.findViewById<CardView>(R.id.layout_notes_MainLayout)
         val layout_notes_PinLayout = itemView.findViewById<RelativeLayout>(R.id.layout_notes_PinLayout)
+        val layout_notes_PinColor = itemView.findViewById<ImageView>(R.id.layout_notes_PinColor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
@@ -52,6 +50,19 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
         }else{
             holder.layout_notes_PinLayout.visibility = View.VISIBLE
         }
+
+        when (BackColor){
+            "Red" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.red))
+            "Blue" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.blue))
+            "Yellow" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.yellow))
+            "Green" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.green))
+            "Pink" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.pink))
+            "Purple" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.purple))
+            "Orange" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.Orange))
+            "Teal" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.teal))
+            "Black" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.Black_Secondary2))
+        }
+
 
         when (BackColor) {
             "Red" -> holder.layout_notes_backColor.setBackgroundColor(

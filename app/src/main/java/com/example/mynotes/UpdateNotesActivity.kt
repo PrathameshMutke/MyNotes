@@ -73,6 +73,7 @@ class UpdateNotesActivity : AppCompatActivity() {
             }
         }
 
+
         when (BackColor) {
             "Red" -> UpdatedNotesActivityBottomLayout.setBackgroundColor(
                 ContextCompat.getColor(

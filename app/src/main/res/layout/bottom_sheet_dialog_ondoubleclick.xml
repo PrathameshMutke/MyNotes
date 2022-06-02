@@ -57,7 +57,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/icon_pin" />
+                android:src="@drawable/icon_unpin" />
 
             <TextView
                 android:id="@+id/BottomSheetDialogOnDoubleClickPinBtnTxt"
