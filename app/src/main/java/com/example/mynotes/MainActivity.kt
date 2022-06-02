@@ -76,17 +76,19 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
+        MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
 
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
         MainActivityNotesAlignment.setOnClickListener {
             MainActivityNotesAlignment.setImageResource(icons[i])
-            i++;
+            i++
             if (i == 3)
-                i = 0;
+                i = 0
 
+            //
             if (i == 0) {
-                MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
                 val notesAdapter = NotesAdapter(this)
                 MainActivityRecyclerView.adapter = notesAdapter
@@ -101,7 +103,6 @@ class MainActivity : AppCompatActivity() {
                 })
 
                 //Pin
-                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
                 notesAdapter2 = NotesAdapter(this)
                 MainActivityPinRecyclerView.adapter = notesAdapter2
@@ -117,7 +118,6 @@ class MainActivity : AppCompatActivity() {
 
 
             } else if (i == 1) {
-                MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
                 val notesAdapter = NotesAdapter(this)
                 MainActivityRecyclerView.adapter = notesAdapter
@@ -133,7 +133,6 @@ class MainActivity : AppCompatActivity() {
 
 
                 //Pin
-                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 3)
                 notesAdapter2 = NotesAdapter(this)
                 MainActivityPinRecyclerView.adapter = notesAdapter2
@@ -148,7 +147,6 @@ class MainActivity : AppCompatActivity() {
                 })
 
             } else if (i == 2) {
-                MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
                 val notesAdapter = NotesAdapter(this)
                 MainActivityRecyclerView.adapter = notesAdapter
@@ -163,7 +161,6 @@ class MainActivity : AppCompatActivity() {
                 })
 
                 //Pin
-                MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 1)
                 notesAdapter2 = NotesAdapter(this)
                 MainActivityPinRecyclerView.adapter = notesAdapter2
@@ -178,11 +175,12 @@ class MainActivity : AppCompatActivity() {
                 })
 
             }
+            //
 
 
         }
 
-        MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
+
         MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
         notesAdapter = NotesAdapter(this)
         MainActivityRecyclerView.adapter = notesAdapter
@@ -196,7 +194,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
         MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
         notesAdapter2 = NotesAdapter(this)
         MainActivityPinRecyclerView.adapter = notesAdapter2

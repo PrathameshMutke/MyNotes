@@ -23,7 +23,6 @@ interface NotesDao {
     @Update
     fun update(note: Note)
 
-
     @Query("SELECT * FROM NotesTable WHERE Title LIKE :SearchQuery OR nNotes LIKE :SearchQuery")
     fun searchData(SearchQuery: String): Flow<List<Note>>
 
