@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,12 +26,21 @@ class MainActivity : AppCompatActivity() {
     lateinit var viewModal: NoteViewModal
     lateinit var notesAdapter: NotesAdapter
     lateinit var notesAdapter2: NotesAdapter
+    lateinit var MainActivitySwipeRefreshLayout: SwipeRefreshLayout
     val icons = IntArray(3)
     var i = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MainActivitySwipeRefreshLayout = findViewById(R.id.MainActivitySwipeRefreshLayout)
+        MainActivitySwipeRefreshLayout.setOnRefreshListener {
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        }
 
         icons[0] = R.drawable.icon_grid3
         icons[1] = R.drawable.icon_grid1
@@ -51,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         MainActivitySearchBarClearIcon = findViewById(R.id.MainActivitySearchBarClearIcon)
+        MainActivitySearchBarClearIcon.setVisibility(View.GONE)
         MainActivitySearchBarClearIcon.setOnClickListener {
             MainActivitySearchBar.setText("")
         }
@@ -79,6 +90,9 @@ class MainActivity : AppCompatActivity() {
         MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
         MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
 
+        notesAdapter = NotesAdapter(this)
+        notesAdapter2 = NotesAdapter(this)
+
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
         MainActivityNotesAlignment.setOnClickListener {
@@ -90,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             //
             if (i == 0) {
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
-                val notesAdapter = NotesAdapter(this)
+
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
                     this,
@@ -104,7 +118,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Pin
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
-                notesAdapter2 = NotesAdapter(this)
+
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
                     this,
@@ -119,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 
             } else if (i == 1) {
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
-                val notesAdapter = NotesAdapter(this)
+
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
                     this,
@@ -134,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Pin
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 3)
-                notesAdapter2 = NotesAdapter(this)
+
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
                     this,
@@ -148,7 +162,7 @@ class MainActivity : AppCompatActivity() {
 
             } else if (i == 2) {
                 MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
-                val notesAdapter = NotesAdapter(this)
+
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
                     this,
@@ -162,7 +176,7 @@ class MainActivity : AppCompatActivity() {
 
                 //Pin
                 MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 1)
-                notesAdapter2 = NotesAdapter(this)
+
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
                     this,
@@ -182,7 +196,7 @@ class MainActivity : AppCompatActivity() {
 
 
         MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        notesAdapter = NotesAdapter(this)
+
         MainActivityRecyclerView.adapter = notesAdapter
         viewModal = ViewModelProvider(
             this,
@@ -195,7 +209,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        notesAdapter2 = NotesAdapter(this)
+
         MainActivityPinRecyclerView.adapter = notesAdapter2
         viewModal = ViewModelProvider(
             this,
