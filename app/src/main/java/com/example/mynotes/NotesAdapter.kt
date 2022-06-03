@@ -197,12 +197,16 @@ class NotesAdapter(
             val view = LayoutInflater.from(context)
                 .inflate(R.layout.bottom_sheet_dialog_ondoubleclick, null)
 
+            val BottomSheetDialogOnDoubleClickPinBtnIcon =
+                view.findViewById<ImageView>(R.id.BottomSheetDialogOnDoubleClickPinBtnIcon)
             val BottomSheetDialogOnDoubleClickPinBtnTxt =
                 view.findViewById<TextView>(R.id.BottomSheetDialogOnDoubleClickPinBtnTxt)
             if (Pin.equals("0")) {
                 BottomSheetDialogOnDoubleClickPinBtnTxt.text = "Pin"
+                BottomSheetDialogOnDoubleClickPinBtnIcon.setBackgroundResource(R.drawable.icon_pin)
             } else if (Pin.equals("1")) {
                 BottomSheetDialogOnDoubleClickPinBtnTxt.text = "Unpin"
+                BottomSheetDialogOnDoubleClickPinBtnIcon.setBackgroundResource(R.drawable.icon_unpin)
             }
 
             val BottomSheetDialogOnDoubleClickOpenBtn =
@@ -239,9 +243,11 @@ class NotesAdapter(
                 dialog.dismiss()
             }
 
-            val BottomSheetDialogOnDoubleClickMakeACopyBtn = view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickMakeACopyBtn)
+            val BottomSheetDialogOnDoubleClickMakeACopyBtn =
+                view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickMakeACopyBtn)
             BottomSheetDialogOnDoubleClickMakeACopyBtn.setOnClickListener {
-                noteClickMakeCopyInterface.OnCopyClick(allNotes.get(position),
+                noteClickMakeCopyInterface.OnCopyClick(
+                    allNotes.get(position),
                     srNO,
                     Title,
                     NOtes,
@@ -249,7 +255,8 @@ class NotesAdapter(
                     BackColor,
                     CreatedDate,
                     UpdatedDate,
-                    Pin)
+                    Pin
+                )
                 dialog.dismiss()
             }
 

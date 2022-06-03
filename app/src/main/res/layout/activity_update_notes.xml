@@ -60,7 +60,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="15dp"
                 android:layout_toStartOf="@+id/UpdatedNotesActivityMenuBtn"
                 android:src="@drawable/icon_save" />
 
@@ -69,9 +69,8 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:layout_toStartOf="@+id/UpdatedNotesActivitySaveBtn"
-                android:rotation="30" />
+                android:layout_marginEnd="15dp"
+                android:layout_toStartOf="@+id/UpdatedNotesActivitySaveBtn" />
 
 
         </RelativeLayout>
