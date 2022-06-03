@@ -323,6 +323,7 @@ class UpdateNotesActivity : AppCompatActivity() {
                 val notes = UpdatedNotesActivityNotes.text.toString()
                 val img = "blank"
                 val backColor = UpdatedNotesActivityBackgroungColorTxt.text.toString()
+
                 val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
                 val createdDate: String = sdf.format(Date())
                 var date: Date? = null

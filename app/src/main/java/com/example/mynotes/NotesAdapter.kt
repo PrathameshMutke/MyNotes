@@ -13,7 +13,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.viewHolder>() {
+class NotesAdapter(
+    val context: Context,
+    val noteClickPinInterface: NoteClickPinInterface,
+    val noteClickDeleteInterface: NoteClickDeleteInterface,
+    val noteClickMakeCopyInterface: NoteClickMakeCopyInterface
+) : RecyclerView.Adapter<NotesAdapter.viewHolder>() {
 
     private val allNotes = ArrayList<Note>()
 
@@ -23,7 +28,8 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
         val layout_notes_backColor =
             itemView.findViewById<RelativeLayout>(R.id.layout_notes_backColor)
         val layout_notes_MainLayout = itemView.findViewById<CardView>(R.id.layout_notes_MainLayout)
-        val layout_notes_PinLayout = itemView.findViewById<RelativeLayout>(R.id.layout_notes_PinLayout)
+        val layout_notes_PinLayout =
+            itemView.findViewById<RelativeLayout>(R.id.layout_notes_PinLayout)
         val layout_notes_PinColor = itemView.findViewById<ImageView>(R.id.layout_notes_PinColor)
     }
 
@@ -45,22 +51,67 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
 
         //viewModal = ViewModelProvider(context, ViewModelProvider.AndroidViewModelFactory.getInstance(context as Application)).get(NoteViewModal::class.java)
 
-        if (Pin.equals("0")){
+        if (Pin.equals("0")) {
             holder.layout_notes_PinLayout.visibility = View.GONE
-        }else{
+        } else {
             holder.layout_notes_PinLayout.visibility = View.VISIBLE
         }
 
-        when (BackColor){
-            "Red" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.red))
-            "Blue" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.blue))
-            "Yellow" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.yellow))
-            "Green" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.green))
-            "Pink" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.pink))
-            "Purple" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.purple))
-            "Orange" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.Orange))
-            "Teal" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.teal))
-            "Black" -> holder.layout_notes_PinColor.setColorFilter(ContextCompat.getColor(context, R.color.Black_Secondary2))
+        when (BackColor) {
+            "Red" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.red
+                )
+            )
+            "Blue" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.blue
+                )
+            )
+            "Yellow" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.yellow
+                )
+            )
+            "Green" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.green
+                )
+            )
+            "Pink" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.pink
+                )
+            )
+            "Purple" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.purple
+                )
+            )
+            "Orange" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.Orange
+                )
+            )
+            "Teal" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.teal
+                )
+            )
+            "Black" -> holder.layout_notes_PinColor.setColorFilter(
+                ContextCompat.getColor(
+                    context,
+                    R.color.white
+                )
+            )
         }
 
 
@@ -143,12 +194,14 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
 
         holder.layout_notes_MainLayout.setOnLongClickListener {
             val dialog = BottomSheetDialog(context)
-            val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog_ondoubleclick, null)
+            val view = LayoutInflater.from(context)
+                .inflate(R.layout.bottom_sheet_dialog_ondoubleclick, null)
 
-            val BottomSheetDialogOnDoubleClickPinBtnTxt = view.findViewById<TextView>(R.id.BottomSheetDialogOnDoubleClickPinBtnTxt)
-            if (Pin.equals("0")){
+            val BottomSheetDialogOnDoubleClickPinBtnTxt =
+                view.findViewById<TextView>(R.id.BottomSheetDialogOnDoubleClickPinBtnTxt)
+            if (Pin.equals("0")) {
                 BottomSheetDialogOnDoubleClickPinBtnTxt.text = "Pin"
-            }else if (Pin.equals("1")){
+            } else if (Pin.equals("1")) {
                 BottomSheetDialogOnDoubleClickPinBtnTxt.text = "Unpin"
             }
 
@@ -166,12 +219,45 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
                     .putExtra("Pin", Pin)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                 context.startActivity(intent)
+                dialog.dismiss()
             }
 
             val BottomSheetDialogOnDoubleClickPinBtn =
                 view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickPinBtn)
             BottomSheetDialogOnDoubleClickPinBtn.setOnClickListener {
-                /////
+                noteClickPinInterface.OnPinClick(
+                    allNotes.get(position),
+                    srNO,
+                    Title,
+                    NOtes,
+                    Img,
+                    BackColor,
+                    CreatedDate,
+                    UpdatedDate,
+                    Pin
+                )
+                dialog.dismiss()
+            }
+
+            val BottomSheetDialogOnDoubleClickMakeACopyBtn = view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickMakeACopyBtn)
+            BottomSheetDialogOnDoubleClickMakeACopyBtn.setOnClickListener {
+                noteClickMakeCopyInterface.OnCopyClick(allNotes.get(position),
+                    srNO,
+                    Title,
+                    NOtes,
+                    Img,
+                    BackColor,
+                    CreatedDate,
+                    UpdatedDate,
+                    Pin)
+                dialog.dismiss()
+            }
+
+            val BottomSheetDialogOnDoubleClickDeleteBtn =
+                view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickDeleteBtn)
+            BottomSheetDialogOnDoubleClickDeleteBtn.setOnClickListener {
+                noteClickDeleteInterface.OnDeleteClick(allNotes.get(position))
+                dialog.dismiss()
             }
 
             dialog.setCancelable(true)
@@ -192,5 +278,37 @@ class NotesAdapter(val context: Context) : RecyclerView.Adapter<NotesAdapter.vie
         return allNotes.size
     }
 
+}
+
+interface NoteClickMakeCopyInterface {
+    fun OnCopyClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    )
+}
+
+interface NoteClickDeleteInterface {
+    fun OnDeleteClick(note: Note)
+}
+
+interface NoteClickPinInterface {
+    fun OnPinClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    )
 }
 

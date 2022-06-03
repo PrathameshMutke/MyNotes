@@ -7,15 +7,19 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDeleteInterface,
+    NoteClickMakeCopyInterface {
 
     lateinit var MainActivitySearchBarClearIcon: ImageView
     lateinit var MainActivitySearchBar: EditText
@@ -90,8 +94,8 @@ class MainActivity : AppCompatActivity() {
         MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
         MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
 
-        notesAdapter = NotesAdapter(this)
-        notesAdapter2 = NotesAdapter(this)
+        notesAdapter = NotesAdapter(this, this, this, this)
+        notesAdapter2 = NotesAdapter(this, this, this, this)
 
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
@@ -230,6 +234,70 @@ class MainActivity : AppCompatActivity() {
                 notesAdapter.updateList(it)
             }
         })
+    }
+
+    override fun OnPinClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    ) {
+        if (Pin.equals("0")) {
+            val updatedNotes = Note(Title, Notes, Img, BackColor, CreatedDate, UpdatedDate, "1")
+            updatedNotes.SrNo = Integer.parseInt(SrNo)
+            viewModal.updateNote(updatedNotes)
+        } else {
+            val updatedNotes = Note(Title, Notes, Img, BackColor, CreatedDate, UpdatedDate, "0")
+            updatedNotes.SrNo = Integer.parseInt(SrNo)
+            viewModal.updateNote(updatedNotes)
+        }
+    }
+
+    override fun OnDeleteClick(note: Note) {
+        viewModal.deleteNote(note)
+        Toast.makeText(this, "Note Deleted", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun OnCopyClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    ) {
+
+        val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
+        val createdDate: String = sdf.format(Date())
+        var date: Date? = null
+        try {
+            date = sdf.parse(createdDate)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        val TimeMilli = date!!.time
+        val timeStamp = TimeMilli.toString()
+
+        viewModal.addNote(
+            Note(
+                Title,
+                Notes,
+                Img,
+                BackColor,
+                timeStamp,
+                "",
+                "0"
+            )
+        )
+        Toast.makeText(this, "Notes Copy Created", Toast.LENGTH_LONG).show()
     }
 
 }
