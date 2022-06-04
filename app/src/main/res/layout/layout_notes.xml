@@ -3,20 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="95dp"
-    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
     app:cardBackgroundColor="@color/white">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/layout_notes_MainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:id="@+id/layout_notes_backColor"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:visibility="visible"
@@ -43,7 +43,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/Black_Secondary"
                 android:layout_marginTop="5dp">
 
@@ -70,7 +70,8 @@
                         android:text="Notes"
                         android:textColor="@color/white"
                         android:textSize="11sp"
-                        android:maxLines="3"/>
+                        android:layout_marginTop="5dp"
+                        android:maxLines="6"/>
 
                 </RelativeLayout>
 

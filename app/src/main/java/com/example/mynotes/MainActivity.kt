@@ -7,12 +7,14 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
     lateinit var MainActivityRecyclerView: RecyclerView
     lateinit var MainActivityPinRecyclerView: RecyclerView
     lateinit var MainActivityNotesAlignment: ImageView
+    lateinit var MainActivityPinTxt: TextView
+    lateinit var MainActivityOtherTxt: TextView
     lateinit var viewModal: NoteViewModal
     lateinit var notesAdapter: NotesAdapter
     lateinit var notesAdapter2: NotesAdapter
@@ -52,6 +56,12 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
         MainActivitySearchBar = findViewById(R.id.MainActivitySearchBar)
         MainActivityAddNotesBtn = findViewById(R.id.MainActivityAddNotesBtn)
+
+        MainActivityPinTxt = findViewById(R.id.MainActivityPinTxt)
+        MainActivityPinTxt.visibility = View.GONE
+
+        MainActivityOtherTxt = findViewById(R.id.MainActivityOtherTxt)
+        MainActivityOtherTxt.visibility = View.GONE
 
         viewModal = ViewModelProvider(
             this,
@@ -97,6 +107,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
         notesAdapter = NotesAdapter(this, this, this, this)
         notesAdapter2 = NotesAdapter(this, this, this, this)
 
+
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
         MainActivityNotesAlignment.setImageResource(icons[2])
         MainActivityNotesAlignment.setOnClickListener {
@@ -107,7 +118,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
             //
             if (i == 0) {
-                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
+                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -121,7 +132,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
+                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -136,7 +147,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
 
             } else if (i == 1) {
-                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 3)
+                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -151,7 +162,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 3)
+                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -165,7 +176,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
             } else if (i == 2) {
-                MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 1)
+                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -179,7 +190,7 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 1)
+                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -199,8 +210,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
         }
 
 
-        MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
-
+        //MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         MainActivityRecyclerView.adapter = notesAdapter
         viewModal = ViewModelProvider(
             this,
@@ -212,8 +223,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
             }
         })
 
-        MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
-
+        //MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         MainActivityPinRecyclerView.adapter = notesAdapter2
         viewModal = ViewModelProvider(
             this,
@@ -222,6 +233,13 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
         viewModal.allPinNotes.observe(this, androidx.lifecycle.Observer { list ->
             list?.let {
                 notesAdapter2.updateList(it)
+            }
+            if (list.isEmpty()){
+                MainActivityPinTxt.visibility = View.GONE
+                MainActivityOtherTxt.visibility = View.GONE
+            }else{
+                MainActivityPinTxt.visibility = View.VISIBLE
+                MainActivityOtherTxt.visibility = View.VISIBLE
             }
         })
 
