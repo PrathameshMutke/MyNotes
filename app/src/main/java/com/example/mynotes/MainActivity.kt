@@ -118,7 +118,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
             //
             if (i == 0) {
-                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -132,7 +133,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityPinRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -147,7 +149,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
 
             } else if (i == 1) {
-                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -162,7 +165,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityPinRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -176,7 +180,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
             } else if (i == 2) {
-                MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityRecyclerView.adapter = notesAdapter
                 viewModal = ViewModelProvider(
@@ -190,7 +195,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
                 })
 
                 //Pin
-                MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+                MainActivityPinRecyclerView.layoutManager =
+                    StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
                 MainActivityPinRecyclerView.adapter = notesAdapter2
                 viewModal = ViewModelProvider(
@@ -211,7 +217,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
 
 
         //MainActivityRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        MainActivityRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        MainActivityRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         MainActivityRecyclerView.adapter = notesAdapter
         viewModal = ViewModelProvider(
             this,
@@ -224,7 +231,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
         })
 
         //MainActivityPinRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        MainActivityPinRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        MainActivityPinRecyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         MainActivityPinRecyclerView.adapter = notesAdapter2
         viewModal = ViewModelProvider(
             this,
@@ -234,10 +242,10 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
             list?.let {
                 notesAdapter2.updateList(it)
             }
-            if (list.isEmpty()){
+            if (list.isEmpty()) {
                 MainActivityPinTxt.visibility = View.GONE
                 MainActivityOtherTxt.visibility = View.GONE
-            }else{
+            } else {
                 MainActivityPinTxt.visibility = View.VISIBLE
                 MainActivityOtherTxt.visibility = View.VISIBLE
             }

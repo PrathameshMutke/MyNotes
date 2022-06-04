@@ -10,6 +10,7 @@
     <color name="grey3">#20C5C5C5</color>
 
     <color name="transparent">#00000000</color>
+    <color name="BlackTransparent">#80000000</color>
 
     <color name="red">#FFf44336</color>
     <color name="blue">#FF2196f3</color>
