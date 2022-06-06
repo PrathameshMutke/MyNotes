@@ -37,6 +37,15 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
+            <TextView
+                android:visibility="visible"
+                android:id="@+id/AddNotesActivityImgUriTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
             <ImageView
                 android:id="@+id/AddNotesActivityMenuBtn"
                 android:layout_width="25dp"

@@ -1,15 +1,23 @@
 package com.example.mynotes
 
+import android.content.Context
+import android.database.Cursor
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class UpdateNotesActivity : AppCompatActivity() {
 
@@ -23,6 +31,7 @@ class UpdateNotesActivity : AppCompatActivity() {
     lateinit var UpdatedNotesActivityUpdatedDate: TextView
     lateinit var UpdatedNotesActivityBottomLayout: LinearLayout
     lateinit var UpdatedNotesActivityPinBtn: ImageView
+    lateinit var UpdatedNotesActivityImage: ImageView
     lateinit var UpdatedNotesActivityPinTxt: TextView
     lateinit var viewModal: NoteViewModal
 
@@ -38,6 +47,14 @@ class UpdateNotesActivity : AppCompatActivity() {
         val CreatedDate = intent.getStringExtra("CreatedDate").toString()
         val UpdatedDate = intent.getStringExtra("UpdatedDate").toString()
         val Pin = intent.getStringExtra("Pin").toString()
+
+
+        /*UpdatedNotesActivityImage = findViewById(R.id.UpdatedNotesActivityImage)
+        val imgUri: Uri = Uri.parse(Img)
+        val imageBitmap = uriToBitmap(imgUri)
+        //Glide.with(this).load(imgUri.encodedPath).into(UpdatedNotesActivityImage)
+        UpdatedNotesActivityImage.setImageBitmap(imageBitmap)*/
+
 
         viewModal = ViewModelProvider(
             this,
@@ -406,4 +423,14 @@ class UpdateNotesActivity : AppCompatActivity() {
 
 
     }
+
+
+    private fun uriToBitmap(uri: Uri): Bitmap {
+        return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+    }
+
 }
+
+
+
+

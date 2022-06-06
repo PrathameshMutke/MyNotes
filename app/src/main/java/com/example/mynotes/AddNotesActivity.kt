@@ -1,14 +1,17 @@
 package com.example.mynotes
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Base64
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import java.io.ByteArrayOutputStream
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -36,7 +39,9 @@ class AddNotesActivity : AppCompatActivity() {
     lateinit var AddNotesActivityBackgroungColorTxt: TextView
     lateinit var AddNotesActivitySaveBtn: ImageView
     lateinit var AddNotesActivityBottomLayout: LinearLayout
+    lateinit var AddNotesActivityImgUriTxt: TextView
 
+    val APP_TAG = "My Notes"
 
     private val pickImage = 100
     private var imageUri: Uri? = null
@@ -46,6 +51,7 @@ class AddNotesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_notes)
 
+        AddNotesActivityImgUriTxt = findViewById(R.id.AddNotesActivityImgUriTxt)
         AddNotesActivityBackBtn = findViewById(R.id.AddNotesActivityBackBtn)
         AddNotesActivityBackBtn.setOnClickListener {
             finish()
@@ -197,6 +203,7 @@ class AddNotesActivity : AppCompatActivity() {
             val intent = Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
+            intent.action = Intent.ACTION_OPEN_DOCUMENT
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), pickImage)
         }
 
@@ -208,7 +215,7 @@ class AddNotesActivity : AppCompatActivity() {
         AddNotesActivitySaveBtn.setOnClickListener {
             val title = AddNotesActivityTitle.text.toString()
             val notes = AddNotesActivityNotes.text.toString()
-            val img = "blank"
+            val img = AddNotesActivityImgUriTxt.text.toString()
             val backColor = AddNotesActivityBackgroungColorTxt.text.toString()
             val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
             val createdDate: String = sdf.format(Date())
@@ -240,8 +247,40 @@ class AddNotesActivity : AppCompatActivity() {
         if (resultCode == RESULT_OK && requestCode == pickImage) {
             imageUri = data?.data
             AddNotesActivityImage.setImageURI(imageUri)
-            //AddNotesActivityTitle.setText(imageUri.toString())
+            AddNotesActivityImgUriTxt.setText(imageUri.toString())
+
+
+            //val imageBitmap = imageUri?.let { uriToBitmap(it) }
+
+            /*val baos = ByteArrayOutputStream()
+            if (imageBitmap != null) {
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 10, baos)
+            }
+            val b = baos.toByteArray()
+            val String64 =  Base64.encodeToString(b, Base64.DEFAULT)
+            AddNotesActivityImgUriTxt.setText(String64)*/
+
+            //AddNotesActivityImage.setImageBitmap(imageBitmap)
+
+            /*
+            val baos = ByteArrayOutputStream()
+            if (imageBitmap != null) {
+                imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+            }
+
+            val b: ByteArray = baos.toByteArray()
+            //val encodedImage = Base64.decode(b)
+            val eI = Base64.encodeToString(b, Base64.DEFAULT)
+            AddNotesActivityImgUriTxt.text = eI*/
+
         }
     }
 
+    private fun uriToBitmap(uri: Uri): Bitmap {
+        return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+    }
+
+
+
 }
+
