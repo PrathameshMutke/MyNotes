@@ -71,6 +71,37 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/BottomSheetDialogOnDoubleClickShareBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/ripple_effect"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/BottomSheetDialogOnDoubleClickShareBtnIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_share"/>
+
+            <TextView
+                android:id="@+id/BottomSheetDialogOnDoubleClickShareBtnTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:textColor="@color/white"
+                android:text="Share"
+                android:textSize="16sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/BottomSheetDialogOnDoubleClickMakeACopyBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

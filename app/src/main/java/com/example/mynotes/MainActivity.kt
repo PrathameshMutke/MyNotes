@@ -20,7 +20,8 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDeleteInterface,
+class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickShareInterface,
+    NoteClickDeleteInterface,
     NoteClickMakeCopyInterface {
 
     lateinit var MainActivitySearchBarClearIcon: ImageView
@@ -104,8 +105,8 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
         MainActivityRecyclerView = findViewById(R.id.MainActivityRecyclerView)
         MainActivityPinRecyclerView = findViewById(R.id.MainActivityPinRecyclerView)
 
-        notesAdapter = NotesAdapter(this, this, this, this)
-        notesAdapter2 = NotesAdapter(this, this, this, this)
+        notesAdapter = NotesAdapter(this, this, this, this, this)
+        notesAdapter2 = NotesAdapter(this, this, this, this, this)
 
 
         MainActivityNotesAlignment = findViewById(R.id.MainActivityNotesAlignment)
@@ -324,6 +325,26 @@ class MainActivity : AppCompatActivity(), NoteClickPinInterface, NoteClickDelete
             )
         )
         Toast.makeText(this, "Notes Copy Created", Toast.LENGTH_LONG).show()
+    }
+
+    override fun OnShareClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    ) {
+        val TitleAndNote = Title + "\n" + Notes
+
+        val intent = Intent()
+        intent.action = Intent.ACTION_SEND
+        intent.putExtra(Intent.EXTRA_TEXT, TitleAndNote)
+        intent.type = "text/plain"
+        startActivity(Intent.createChooser(intent, "Share To:"))
     }
 
 }

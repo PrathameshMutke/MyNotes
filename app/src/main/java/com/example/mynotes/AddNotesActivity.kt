@@ -1,17 +1,17 @@
 package com.example.mynotes
 
+import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Base64
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import java.io.ByteArrayOutputStream
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,9 +53,6 @@ class AddNotesActivity : AppCompatActivity() {
 
         AddNotesActivityImgUriTxt = findViewById(R.id.AddNotesActivityImgUriTxt)
         AddNotesActivityBackBtn = findViewById(R.id.AddNotesActivityBackBtn)
-        AddNotesActivityBackBtn.setOnClickListener {
-            finish()
-        }
 
         viewModal = ViewModelProvider(
             this,
@@ -211,6 +208,64 @@ class AddNotesActivity : AppCompatActivity() {
         AddNotesActivityTitle = findViewById(R.id.AddNotesActivityTitle)
         AddNotesActivityNotes = findViewById(R.id.AddNotesActivityNotes)
 
+        AddNotesActivityBackBtn.setOnClickListener {
+            val titleT = AddNotesActivityTitle.text.toString()
+            val notesN = AddNotesActivityNotes.text.toString()
+
+            if (titleT.isEmpty() && notesN.isEmpty()){
+                finish()
+            }else{
+                val dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(true)
+                dialog.setContentView(R.layout.confirm_save_dialog)
+                dialog.window!!.setBackgroundDrawable(
+                    this.getResources().getDrawable(R.drawable.popup_background)
+                )
+
+                val confirm_save_dialog_Save = dialog.findViewById<TextView>(R.id.confirm_save_dialog_Save)
+                confirm_save_dialog_Save.setOnClickListener {
+                    val title = AddNotesActivityTitle.text.toString()
+                    val notes = AddNotesActivityNotes.text.toString()
+                    val img = AddNotesActivityImgUriTxt.text.toString()
+                    val backColor = AddNotesActivityBackgroungColorTxt.text.toString()
+                    val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
+                    val createdDate: String = sdf.format(Date())
+                    var date: Date? = null
+                    try {
+                        date = sdf.parse(createdDate)
+                    } catch (e: ParseException) {
+                        e.printStackTrace()
+                    }
+                    val TimeMilli = date!!.time
+                    val timeStamp = TimeMilli.toString()
+
+                    val updatedDate = ""
+
+                    if (title.isEmpty() || notes.isEmpty()) {
+                        Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG).show()
+                    } else {
+                        viewModal.addNote(Note(title, notes, img, backColor, timeStamp, updatedDate, "0"))
+                        Toast.makeText(this, "Notes Added", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+                }
+
+                val confirm_save_dialog_DontSave = dialog.findViewById<TextView>(R.id.confirm_save_dialog_DontSave)
+                confirm_save_dialog_DontSave.setOnClickListener {
+                    dialog.dismiss()
+                    finish()
+                }
+
+                val confirm_save_dialog_Cancel = dialog.findViewById<TextView>(R.id.confirm_save_dialog_Cancel)
+                confirm_save_dialog_Cancel.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+            }
+        }
+
         AddNotesActivitySaveBtn = findViewById(R.id.AddNotesActivitySaveBtn)
         AddNotesActivitySaveBtn.setOnClickListener {
             val title = AddNotesActivityTitle.text.toString()
@@ -280,6 +335,63 @@ class AddNotesActivity : AppCompatActivity() {
         return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
     }
 
+    override fun onBackPressed() {
+        val titleT = AddNotesActivityTitle.text.toString()
+        val notesN = AddNotesActivityNotes.text.toString()
+
+        if (titleT.isEmpty() && notesN.isEmpty()){
+            finish()
+        }else{
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.confirm_save_dialog)
+            dialog.window!!.setBackgroundDrawable(
+                this.getResources().getDrawable(R.drawable.popup_background)
+            )
+
+            val confirm_save_dialog_Save = dialog.findViewById<TextView>(R.id.confirm_save_dialog_Save)
+            confirm_save_dialog_Save.setOnClickListener {
+                val title = AddNotesActivityTitle.text.toString()
+                val notes = AddNotesActivityNotes.text.toString()
+                val img = AddNotesActivityImgUriTxt.text.toString()
+                val backColor = AddNotesActivityBackgroungColorTxt.text.toString()
+                val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
+                val createdDate: String = sdf.format(Date())
+                var date: Date? = null
+                try {
+                    date = sdf.parse(createdDate)
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                val TimeMilli = date!!.time
+                val timeStamp = TimeMilli.toString()
+
+                val updatedDate = ""
+
+                if (title.isEmpty() || notes.isEmpty()) {
+                    Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG).show()
+                } else {
+                    viewModal.addNote(Note(title, notes, img, backColor, timeStamp, updatedDate, "0"))
+                    Toast.makeText(this, "Notes Added", Toast.LENGTH_LONG).show()
+                    finish()
+                }
+            }
+
+            val confirm_save_dialog_DontSave = dialog.findViewById<TextView>(R.id.confirm_save_dialog_DontSave)
+            confirm_save_dialog_DontSave.setOnClickListener {
+                dialog.dismiss()
+                finish()
+            }
+
+            val confirm_save_dialog_Cancel = dialog.findViewById<TextView>(R.id.confirm_save_dialog_Cancel)
+            confirm_save_dialog_Cancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
+    }
 
 
 }

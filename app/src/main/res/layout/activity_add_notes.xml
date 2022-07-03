@@ -28,23 +28,23 @@
                 android:src="@drawable/icon_arrow_back" />
 
             <TextView
-                android:visibility="gone"
                 android:id="@+id/AddNotesActivityBackgroungColorTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="color"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="gone" />
 
             <TextView
-                android:visibility="visible"
                 android:id="@+id/AddNotesActivityImgUriTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:textColor="@color/white"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/AddNotesActivityMenuBtn"
@@ -65,61 +65,56 @@
 
         </RelativeLayout>
 
-        <androidx.core.widget.NestedScrollView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/AddNotesActivityHeadingLayout">
+            android:layout_below="@+id/AddNotesActivityHeadingLayout"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp">
 
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/AddNotesActivityImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside" />
+
+            <EditText
+                android:id="@+id/AddNotesActivityTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/AddNotesActivityImage"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/transparent"
+                android:hint="Title"
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="@color/grey1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/AddNotesActivityNotes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="50dp">
+                android:layout_below="@+id/AddNotesActivityTitle"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/transparent"
+                android:gravity="top|start"
+                android:hint="notes..."
+                android:inputType="textMultiLine"
+                android:textColor="@color/white"
+                android:textColorHint="@color/grey1"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
-                <ImageView
-                    android:id="@+id/AddNotesActivityImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:adjustViewBounds="true"
-                    android:scaleType="centerInside" />
-
-                <EditText
-                    android:id="@+id/AddNotesActivityTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/AddNotesActivityImage"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@color/transparent"
-                    android:hint="Title"
-                    android:inputType="textMultiLine"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/grey1"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/AddNotesActivityNotes"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/AddNotesActivityTitle"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@color/transparent"
-                    android:gravity="top|start"
-                    android:hint="notes..."
-                    android:inputType="textMultiLine"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/grey1"
-                    android:textSize="16sp"
-                    android:textStyle="normal" />
-
-            </RelativeLayout>
-
-        </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/AddNotesActivityBottomLayout"
@@ -134,14 +129,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/icon_todolist" />
+                android:src="@drawable/icon_todolist"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/AddNotesActivityAddImgBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/icon_image" />
+                android:src="@drawable/icon_image"
+                android:visibility="gone" />
 
         </LinearLayout>
 

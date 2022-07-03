@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class NotesAdapter(
     val context: Context,
     val noteClickPinInterface: NoteClickPinInterface,
+    val noteClickShareInterface: NoteClickShareInterface,
     val noteClickDeleteInterface: NoteClickDeleteInterface,
     val noteClickMakeCopyInterface: NoteClickMakeCopyInterface
 ) : RecyclerView.Adapter<NotesAdapter.viewHolder>() {
@@ -243,6 +244,23 @@ class NotesAdapter(
                 dialog.dismiss()
             }
 
+            val BottomSheetDialogOnDoubleClickShareBtn =
+                view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickShareBtn)
+            BottomSheetDialogOnDoubleClickShareBtn.setOnClickListener {
+                noteClickShareInterface.OnShareClick(
+                    allNotes.get(position),
+                    srNO,
+                    Title,
+                    NOtes,
+                    Img,
+                    BackColor,
+                    CreatedDate,
+                    UpdatedDate,
+                    Pin
+                )
+                dialog.dismiss()
+            }
+
             val BottomSheetDialogOnDoubleClickMakeACopyBtn =
                 view.findViewById<LinearLayout>(R.id.BottomSheetDialogOnDoubleClickMakeACopyBtn)
             BottomSheetDialogOnDoubleClickMakeACopyBtn.setOnClickListener {
@@ -285,6 +303,20 @@ class NotesAdapter(
         return allNotes.size
     }
 
+}
+
+interface NoteClickShareInterface {
+    fun OnShareClick(
+        note: Note,
+        SrNo: String,
+        Title: String,
+        Notes: String,
+        Img: String,
+        BackColor: String,
+        CreatedDate: String,
+        UpdatedDate: String,
+        Pin: String
+    )
 }
 
 interface NoteClickMakeCopyInterface {

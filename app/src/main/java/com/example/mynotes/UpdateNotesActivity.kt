@@ -1,6 +1,8 @@
 package com.example.mynotes
 
+import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
@@ -8,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -204,7 +207,68 @@ class UpdateNotesActivity : AppCompatActivity() {
 
         UpdatedNotesActivityBackBtn = findViewById(R.id.UpdatedNotesActivityBackBtn)
         UpdatedNotesActivityBackBtn.setOnClickListener {
-            finish()
+            val titleT = UpdatedNotesActivityTitle.text.toString()
+            val notesN = UpdatedNotesActivityNotes.text.toString()
+
+            if (titleT.equals(Title) && notesN.equals(Notes)) {
+                finish()
+            } else {
+                val dialog = Dialog(this)
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                dialog.setCancelable(true)
+                dialog.setContentView(R.layout.confirm_save_dialog)
+                dialog.window!!.setBackgroundDrawable(
+                    this.getResources().getDrawable(R.drawable.popup_background)
+                )
+
+                val confirm_save_dialog_Save =
+                    dialog.findViewById<TextView>(R.id.confirm_save_dialog_Save)
+                confirm_save_dialog_Save.setOnClickListener {
+                    val PinTxt = UpdatedNotesActivityPinTxt.text.toString()
+                    val title = UpdatedNotesActivityTitle.text.toString()
+                    val notes = UpdatedNotesActivityNotes.text.toString()
+                    val img = "blank"
+                    val backColor = UpdatedNotesActivityBackgroungColorTxt.text.toString()
+                    val createdDate = CreatedDate
+
+                    val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
+                    val uUpdatedDate: String = sdf.format(Date())
+                    var date: Date? = null
+                    try {
+                        date = sdf.parse(uUpdatedDate)
+                    } catch (e: ParseException) {
+                        e.printStackTrace()
+                    }
+                    val TimeMilli = date!!.time
+                    val updatedDate = TimeMilli.toString()
+
+                    if (title.isEmpty() || notes.isEmpty()) {
+                        Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG)
+                            .show()
+                    } else {
+                        val updatedNotes =
+                            Note(title, notes, img, backColor, createdDate, updatedDate, PinTxt)
+                        updatedNotes.SrNo = Integer.parseInt(SrNo)
+                        viewModal.updateNote(updatedNotes)
+                        Toast.makeText(this, "Notes Updated", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                val confirm_save_dialog_DontSave =
+                    dialog.findViewById<TextView>(R.id.confirm_save_dialog_DontSave)
+                confirm_save_dialog_DontSave.setOnClickListener {
+                    dialog.dismiss()
+                    finish()
+                }
+
+                val confirm_save_dialog_Cancel =
+                    dialog.findViewById<TextView>(R.id.confirm_save_dialog_Cancel)
+                confirm_save_dialog_Cancel.setOnClickListener {
+                    dialog.dismiss()
+                }
+
+                dialog.show()
+            }
         }
 
         UpdatedNotesActivityBackgroungColorTxt =
@@ -333,6 +397,21 @@ class UpdateNotesActivity : AppCompatActivity() {
                 UpdatedNotesActivityBackgroungColorTxt.text = "Black"
             }
 
+            val BottomSheetDialogUpdateShareBtn: LinearLayout =
+                view.findViewById(R.id.BottomSheetDialogUpdateShareBtn)
+            BottomSheetDialogUpdateShareBtn.setOnClickListener {
+                val title = UpdatedNotesActivityTitle.text.toString()
+                val notes = UpdatedNotesActivityNotes.text.toString()
+
+                val TitleAndNote = title + "\n" + notes
+
+                val intent = Intent()
+                intent.action = Intent.ACTION_SEND
+                intent.putExtra(Intent.EXTRA_TEXT, TitleAndNote)
+                intent.type = "text/plain"
+                startActivity(Intent.createChooser(intent, "Share To:"))
+            }
+
             val BottomSheetDialogUpdateMakeACopyBtn: LinearLayout =
                 view.findViewById(R.id.BottomSheetDialogUpdateMakeACopyBtn)
             BottomSheetDialogUpdateMakeACopyBtn.setOnClickListener {
@@ -427,6 +506,81 @@ class UpdateNotesActivity : AppCompatActivity() {
 
     private fun uriToBitmap(uri: Uri): Bitmap {
         return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+    }
+
+    override fun onBackPressed() {
+        val SrNo = intent.getStringExtra("SrNo").toString()
+        val Title = intent.getStringExtra("Title").toString()
+        val Notes = intent.getStringExtra("Notes").toString()
+        val Img = intent.getStringExtra("Img").toString()
+        val BackColor = intent.getStringExtra("BackColor").toString()
+        val CreatedDate = intent.getStringExtra("CreatedDate").toString()
+        val UpdatedDate = intent.getStringExtra("UpdatedDate").toString()
+        val Pin = intent.getStringExtra("Pin").toString()
+
+
+        val titleT = UpdatedNotesActivityTitle.text.toString()
+        val notesN = UpdatedNotesActivityNotes.text.toString()
+
+        if (titleT.equals(Title) && notesN.equals(Notes)) {
+            finish()
+        } else {
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.confirm_save_dialog)
+            dialog.window!!.setBackgroundDrawable(
+                this.getResources().getDrawable(R.drawable.popup_background)
+            )
+
+            val confirm_save_dialog_Save =
+                dialog.findViewById<TextView>(R.id.confirm_save_dialog_Save)
+            confirm_save_dialog_Save.setOnClickListener {
+                val PinTxt = UpdatedNotesActivityPinTxt.text.toString()
+                val title = UpdatedNotesActivityTitle.text.toString()
+                val notes = UpdatedNotesActivityNotes.text.toString()
+                val img = "blank"
+                val backColor = UpdatedNotesActivityBackgroungColorTxt.text.toString()
+                val createdDate = CreatedDate
+
+                val sdf = SimpleDateFormat("dd MMM yyyy hh:mm aaa")
+                val uUpdatedDate: String = sdf.format(Date())
+                var date: Date? = null
+                try {
+                    date = sdf.parse(uUpdatedDate)
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+                val TimeMilli = date!!.time
+                val updatedDate = TimeMilli.toString()
+
+                if (title.isEmpty() || notes.isEmpty()) {
+                    Toast.makeText(this, "Please Enter title and notes", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    val updatedNotes =
+                        Note(title, notes, img, backColor, createdDate, updatedDate, PinTxt)
+                    updatedNotes.SrNo = Integer.parseInt(SrNo)
+                    viewModal.updateNote(updatedNotes)
+                    Toast.makeText(this, "Notes Updated", Toast.LENGTH_LONG).show()
+                }
+            }
+
+            val confirm_save_dialog_DontSave =
+                dialog.findViewById<TextView>(R.id.confirm_save_dialog_DontSave)
+            confirm_save_dialog_DontSave.setOnClickListener {
+                dialog.dismiss()
+                finish()
+            }
+
+            val confirm_save_dialog_Cancel =
+                dialog.findViewById<TextView>(R.id.confirm_save_dialog_Cancel)
+            confirm_save_dialog_Cancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
     }
 
 }
