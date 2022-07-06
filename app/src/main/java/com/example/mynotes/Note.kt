@@ -16,5 +16,4 @@ class Note(
 ) {
     @PrimaryKey(autoGenerate = true)
     var SrNo = 0
-
 }
